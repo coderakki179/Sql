@@ -1,0 +1,140 @@
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.002 sec)
+
+MariaDB [(none)]> create database akki;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| akki               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use akki;
+Database changed
+
+MariaDB [akki]> create table students(id int(5),name char(50),palace char (50),mobile int(12));
+Query OK, 0 rows affected (0.027 sec)
+
+MariaDB [akki]> show tables;
++----------------+
+| Tables_in_akki |
++----------------+
+| students       |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [akki]> desc students;
++--------+----------+------+-----+---------+-------+
+| Field  | Type     | Null | Key | Default | Extra |
++--------+----------+------+-----+---------+-------+
+| id     | int(5)   | YES  |     | NULL    |       |
+| name   | char(50) | YES  |     | NULL    |       |
+| palace | char(50) | YES  |     | NULL    |       |
+| mobile | int(12)  | YES  |     | NULL    |       |
++--------+----------+------+-----+---------+-------+
+4 rows in set (0.043 sec)
+
+
+MariaDB [akki]> alter table students modify column id int(5) primary key auto_increment;
+Query OK, 0 rows affected (0.072 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [akki]> desc students;
++--------+----------+------+-----+---------+----------------+
+| Field  | Type     | Null | Key | Default | Extra          |
++--------+----------+------+-----+---------+----------------+
+| id     | int(5)   | NO   | PRI | NULL    | auto_increment |
+| name   | char(50) | YES  |     | NULL    |                |
+| palace | char(50) | YES  |     | NULL    |                |
+| mobile | int(12)  | YES  |     | NULL    |                |
++--------+----------+------+-----+---------+----------------+
+4 rows in set (0.047 sec)
+
+
+MariaDB [akki]> insert into students values(1,'akshay','kurukshetra',9728233316);
+Query OK, 1 row affected, 1 warning (0.003 sec)
+
+MariaDB [akki]> insert into students values(2,'neeraj','delhi',9756568656);
+Query OK, 1 row affected, 1 warning (0.002 sec)
+
+MariaDB [akki]> insert into students values(3,'ashish','mumbai',45454546446);
+Query OK, 1 row affected, 1 warning (0.002 sec)
+
+MariaDB [akki]> select * from students;
++----+--------+-------------+------------+
+| id | name   | palace      | mobile     |
++----+--------+-------------+------------+
+|  1 | akshay | kurukshetra | 2147483647 |
+|  2 | neeraj | delhi       | 2147483647 |
+|  3 | ashish | mumbai      | 2147483647 |
++----+--------+-------------+------------+
+3 rows in set (0.000 sec)
+
+
+MariaDB [akki]> select * from students where id=1;
++----+--------+-------------+------------+
+| id | name   | palace      | mobile     |
++----+--------+-------------+------------+
+|  1 | akshay | kurukshetra | 2147483647 |
++----+--------+-------------+------------+
+1 row in set (0.001 sec)
+
+MariaDB [akki]> select palace from students;
++-------------+
+| palace      |
++-------------+
+| kurukshetra |
+| delhi       |
+| mumbai      |
++-------------+
+3 rows in set (0.000 sec)
+
+
+
+MariaDB [akki]> update students set name='bhupesh' where id=3;
+Query OK, 1 row affected (0.003 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [akki]> select * from students;
++----+---------+-------------+------------+
+| id | name    | palace      | mobile     |
++----+---------+-------------+------------+
+|  1 | akshay  | kurukshetra | 2147483647 |
+|  2 | neeraj  | delhi       | 2147483647 |
+|  3 | bhupesh | mumbai      | 2147483647 |
++----+---------+-------------+------------+
+3 rows in set (0.000 sec)
+
+
+
+
+MariaDB [akki]> delete from students where id=3;
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [akki]> select * from students;
++----+--------+-------------+------------+
+| id | name   | palace      | mobile     |
++----+--------+-------------+------------+
+|  1 | akshay | kurukshetra | 2147483647 |
+|  2 | neeraj | delhi       | 2147483647 |
++----+--------+-------------+------------+
+2 rows in set (0.000 sec)
+
+
